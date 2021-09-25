@@ -9,4 +9,6 @@ public interface IUSuarioService {
 	public Usuario findById(Long id);
 	public void deleteById(Long id);
 	public Usuario save(Usuario usuario);
+	public List<Usuario> findByNombre(String nombre);
+
 }

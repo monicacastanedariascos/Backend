@@ -33,6 +33,8 @@ public class Usuario implements Serializable {
 	private Date fecha_inicio;
 	@Column
 	private Date fecha_fin;
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -72,7 +74,7 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+		
 	
 	
 }

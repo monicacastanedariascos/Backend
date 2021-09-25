@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicacion Gimnasio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Usuario del gym</h1>
+    <table class="table">
+        <thead>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Fecha Nacimiento
+            </th>
+            <th>
+                Fecha Inicio
+            </th>
+            <th>
+                Fecha Fin
+            </th>
+        </thead>
+        <tbody  id="usuarios">
+
+        </tbody>
+    </table>
+    <a href="/agregarusuario.html" class="btn btn-primary">Agregar Usuario Nuevo</a>
+</body>
+<script>
+    const consultarApi=async()=>{
+        const url="http://localhost:8080/api/usuarios";
+        const api=await fetch(url);
+        const resultado=await api.json();
+       
+        const tabla=document.getElementById("usuarios");
+        const agregartabla=resultado.map(usuario=>(
+            "<tr><td>"+usuario.nombre+
+                "</td><td>"+usuario.apellido+"</td><td>"+
+                    usuario.fecha_nacimiento+"</td><td>"+
+                    usuario.fecha_inicio+"</td><td>"+usuario.fecha_fin+"</td></tr>"
+            
+        ))
+        tabla.innerHTML=agregartabla;
+    }
+    consultarApi();
+
+</script>
+</html>

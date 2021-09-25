@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<script>
+   async function guardar(){
+        
+        const url="http://localhost:8080/api/usuarios";
+        let datos={};
+        datos.nombre=document.getElementById("nombre").value;
+        datos.apellido=document.getElementById("apellido").value;
+        datos.fecha_inicio=document.getElementById("fecha_inicio").value;
+        datos.fecha_nacimiento=document.getElementById("fecha_nacimiento").value;
+        datos.fecha_fin=document.getElementById("fecha_fin").value;
+        
+        const api=await fetch(url,
+        {
+            method:"POST",
+            headers:{
+                "Accept":"application/json",
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify(datos)
+        }
+        );
+        const resultado=api.json();
+        document.getElementById("nombre").value="";
+        document.getElementById("apellido").value="";
+        document.getElementById("fecha_inicio").value="";
+        document.getElementById("fecha_nacimiento").value="";
+        document.getElementById("fecha_fin").value="";
+        alert("El usuario se creo con exito");
+        
+        
+       
+    }
+</script>
+<body>
+    <h2>Ingrese los datos del usuario</h2>
+    <form onsubmit="return false;">
+        Nombre: <input type="text" required id="nombre"/><br/>
+        Apellido: <input type="text" required id="apellido"/><br/>
+        fecha_nacimiento: <input type="datetime-local" required id="fecha_nacimiento"/><br/>
+        fecha_inicio: <input type="datetime-local" required id="fecha_inicio"/><br/>
+        fecha_fin: <input type="datetime-local" required id="fecha_fin"/><br/>
+        <button class="btn btn-danger" onclick="guardar();" >Enviar</button>
+    </form>
+    <a href="/index.html" class="btn btn-primary">Regresar</a>
+</body>
+</html>

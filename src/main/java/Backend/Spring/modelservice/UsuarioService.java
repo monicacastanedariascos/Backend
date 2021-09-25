@@ -33,6 +33,12 @@ public class UsuarioService implements IUSuarioService {
 		// TODO Auto-generated method stub
 		return usuarioDAO.save(usuario);
 	}
+	@Override
+	public List<Usuario> findByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return usuarioDAO.findByNombre(nombre);
+	}
+
 	
 
 }
